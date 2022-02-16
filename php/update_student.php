@@ -1,3 +1,11 @@
+<?php
+session_start();
+require_once('./library/library.php');
+if(!isLoged()){
+    header('location: ./../index.php');
+    die();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 

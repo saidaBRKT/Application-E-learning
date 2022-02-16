@@ -1,6 +1,12 @@
 <?php
+session_start();
 include 'operations.php';
 include 'headHTML.php'; 
+require_once('./library/library.php');
+if(!isLoged()){
+    header('location: ./../index.php');
+    die();
+}
 ?>
 
    <title>Add Course</title>
@@ -18,15 +24,15 @@ include 'headHTML.php';
 <h6 class="text-center fw-bold">Add Courses</h6>
 <div class="mb-2">
  <label  class="form-label text-secondary">Title :</label>
- <input type="text" class="form-control" name="Title" placeholder="Title" >
+ <input type="text" class="form-control" name="Title" placeholder="Title" required>
 </div>
 <div class="mb-2">
  <label class="form-label text-secondary">Link :</label>
- <input type="text" class="form-control" name="Link"placeholder="Enter your Link" >
+ <input type="text" class="form-control" name="Link"placeholder="Enter your Link" required >
 </div>
 <div class="mb-2">
  <label  class="form-label text-secondary">Price</label>
- <input type="number" class="form-control"  name="Price" placeholder="Price">
+ <input type="number" class="form-control"  name="Price" placeholder="Price" required>
 </div>
 <button class="btn btn-info text-white w-100" name="addc">Add</button>
 </form>

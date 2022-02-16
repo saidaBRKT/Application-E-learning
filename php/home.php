@@ -1,4 +1,10 @@
 <?php
+session_start();
+require_once('./library/library.php');
+if(!isLoged()){
+    header('location: ./../index.php');
+    die();
+}
 $conn=new PDO('mysql:host=localhost;dbname=e_classe_db;charset=utf8','root','');
 $result=$conn->query("SELECT COUNT(*) FROM courses");
 $result->execute();
@@ -6,6 +12,8 @@ $sum_students=$conn->query("SELECT COUNT(*) FROM students");
 $sum_students->execute();
 $sum_payments=$conn->query("SELECT SUM(Balance) FROM payments");
 $sum_payments->execute();
+$sum_user=$conn->query("SELECT count(username) FROM comptes");
+$sum_user->execute();
 
 
 ?>
@@ -60,7 +68,7 @@ $sum_payments->execute();
                   <span>Payments</span>
                 </div>
                 <div>
-                  <span class="h5 fw-bold nbr"> DHS<?php print_r($sum_payments->fetchColumn()); ?></span>
+                  <span class="h5 fw-bold nbr"> DHS <?php print_r($sum_payments->fetchColumn()); ?></span>
                 </div>
               </div>
             </div>
@@ -70,7 +78,7 @@ $sum_payments->execute();
                   <i class="fal fa-user display-6"></i><span>Users</span>   
                 </div>
                 <div>
-                  <span class="h5 fw-bold nbr">243</span>
+                  <span class="h5 fw-bold nbr"><?php print_r($sum_user->fetchColumn()); ?></span>
                 </div>
               </div>
             </div>

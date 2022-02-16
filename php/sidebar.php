@@ -13,7 +13,6 @@
         <div class="admin d-flex flex-column justify-content-center align-items-center mb-3">
             
             <?php  
-                   session_start();  
                     if(isset($_SESSION["username"]))  
                     {  
                         echo '<span class="text-dark d-none d-sm-flex fw-bold">'.$_SESSION["username"].'</span>';  

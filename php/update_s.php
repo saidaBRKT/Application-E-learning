@@ -1,4 +1,10 @@
 <?php
+session_start();
+require_once('./library/library.php');
+if(!isLoged()){
+    header('location: ./../index.php');
+    die();
+}
 include 'operations.php';
 include 'headHTML.php'; 
 ?>

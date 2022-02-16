@@ -1,6 +1,5 @@
-<?php
 
-echo <<<EOT
+
 <nav class="navbar navbar-light pt-0 ">
   <div class="container-fluid  bg-white">
     <i class="fal fa-caret-circle-left"></i>
@@ -13,6 +12,3 @@ echo <<<EOT
     </form>
   </div>
 </nav>
-
-EOT;
-?>

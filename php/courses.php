@@ -1,6 +1,12 @@
 <?php
+session_start();
 include 'operations.php';
 include 'headHTML.php'; 
+require_once('./library/library.php');
+if(!isLoged()){
+    header('location: ./../index.php');
+    die();
+}
 ?>
 
 

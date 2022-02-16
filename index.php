@@ -1,12 +1,17 @@
 <?php  
- session_start();  
- $host = "localhost";  
- $username = "root";  
- $password = "";  
- $database = "e_classe_db";  
- $message = "";  
- try  
- {  
+    session_start();  
+    require_once('./php/library/library.php');
+    if(isLoged()){
+        header('location: ./php/home.php');
+        die();
+    }
+    $host = "localhost";  
+    $username = "root";  
+    $password = "";  
+    $database = "e_classe_db";  
+    $message = "";  
+    try  
+    {  
       $connect = new PDO("mysql:host=$host; dbname=$database", $username, $password);  
       $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);  
       if($_SERVER['REQUEST_METHOD'] === 'POST')  
@@ -36,6 +41,10 @@
                          setcookie('password');
                     }
 
+                     $_SESSION["auth"] = array(
+                         "username" => $_POST['username'],
+                         "password" => $_POST['password']
+                     );
                      $_SESSION["username"] = $_POST["username"];  
                      header("location:php/home.php");  
                 }  
@@ -45,11 +54,11 @@
                 }  
            }  
       }  
- }  
- catch(PDOException $error)  
- {  
-      $message = $error->getMessage();  
- }  
+    }  
+    catch(PDOException $error)  
+    {  
+        $message = $error->getMessage();  
+    }  
  ?>  
 
 

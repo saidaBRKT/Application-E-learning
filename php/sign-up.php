@@ -1,4 +1,5 @@
 <?php
+
 try {
   $con = new PDO( 'mysql:host=localhost;dbname=e_classe_db;charset=utf8','root','');  
   }
