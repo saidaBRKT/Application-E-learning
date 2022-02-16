@@ -1,27 +1,9 @@
 <?php
-
-include 'students_functions.php';
-$students=getusers();
-
+include 'operations.php';
+include 'headHTML.php'; 
 ?>
 
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payments</title>
-    <link rel="stylesheet" href="../css/style_total.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"  rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-    <!---->
-    <link rel="stylesheet"
-        href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <title>Students</title>
 </head>
 
 <body>
@@ -36,15 +18,17 @@ $students=getusers();
                 <h2>Students list</h2>
                 <div class="caption d-flex align-items-center">
                     <i class="far fa-sort"></i>
-                    <span class="plus d-flex d-sm-none "><i class="fas fa-plus"></i></span>
+                    <a href="Add.php" class="text-decoration-none text-white"><span class="plus d-flex d-sm-none "><i class="fas fa-plus"></i></span></a>
                 </div>
             </div>
             <DIV class="button d-none d-sm-flex rounded">
-                <button type="button" class="btn text-white w-100 ">ADD NEW STUDENT</button>
+                <button type="button" class="btn text-white w-100 "><a href="Add.php" class="text-decoration-none text-white">ADD NEW STUDENT</a></button>
             </DIV>
         </div>
         <hr class="mx-3">
-        <div class="container-fluid px-3 mt-4">
+         
+<div class="container-fluid px-3 mt-4 ">
+    <div class="cont-stdnt">
             <div class="table-responsive ">
                 <table class="table table-borderless bg-white">
                     <thead class="student bg-light">
@@ -61,25 +45,26 @@ $students=getusers();
                     
                    <tbody>
                     <?php
-                            foreach($students as $student):?>
+                            while($row=$res->fetch_assoc()): ?>
                             <tr class="border-light" style=" border-bottom:9px red solid;" >
-                            <td class="debut "><img src=" <?php echo $student['img'] ?>" alt="students"/></td>
-                            <td class="pt-4"><?php echo $student['name']?></td>
-                            <td class="pt-4"><?php echo $student['email']?></td>
-                            <td class="pt-4"><?php echo $student['phone']?></td>
-                            <td class="pt-4"><?php echo $student['number']?></td>
-                            <td class="pt-4"><?php echo $student['date']?></td>
+                            <td class="debut "><img src="<?php echo $row['img'] ?>" alt="students"/></td>
+                            <td class="pt-4"><?php echo $row['name']?></td>
+                            <td class="pt-4"><?php echo $row['email']?></td>
+                            <td class="pt-4"><?php echo $row['phone']?></td>
+                            <td class="pt-4"><?php echo $row['number']?></td>
+                            <td class="pt-4"><?php echo $row['date']?></td>
                             <td class='action fin pt-4'>
                                 <div  class="d-flex">
-                                <span title="Modifier" class="pe-3 text-primary"> <i class="fal fa-pen text-info"></i> </span>
-                                <span title="Modifier"> <i class="fal fa-trash text-info mx-1"></i> </span>
+                                <span title="Modifier" class="pe-3 text-primary"><a href="update_s.php?edit=<?php echo $row['id'];?>"><i class="fal fa-pen text-info"></i></a> </span>
+                                <span title="Supprimer"><a href="students.php?delete=<?php echo $row['id'];?>"><i class="fal fa-trash text-info mx-1"></i></a> </span>
                                 </div>
                             </td>
                             </tr>
-                            <?php endforeach;;   ?>
+                            <?php endwhile;   ?>
                         </tbody>
                         </table>
-                    </div>  
+                    </div> 
+                    </div> 
                 </div>
             </div>
         </div>

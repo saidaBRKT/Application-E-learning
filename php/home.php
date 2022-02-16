@@ -1,3 +1,14 @@
+<?php
+$conn=new PDO('mysql:host=localhost;dbname=e_classe_db;charset=utf8','root','');
+$result=$conn->query("SELECT COUNT(*) FROM courses");
+$result->execute();
+$sum_students=$conn->query("SELECT COUNT(*) FROM students");
+$sum_students->execute();
+$sum_payments=$conn->query("SELECT SUM(Balance) FROM payments");
+$sum_payments->execute();
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,7 +38,7 @@
                   <span>Students</span>
                 </div>
                 <div>
-                  <span class="h5 fw-bold nbr">243</span>
+                  <span class="h5 fw-bold nbr"><?php print_r($sum_students->fetchColumn()); ?></span>
                 </div>
               </div>
             </div>
@@ -38,7 +49,7 @@
                   <span>Cours</span>
                 </div>
                 <div>
-                  <span class="h5 fw-bold nbr">13</span>
+                  <span class="h5 fw-bold nbr"><?php print_r($result->fetchColumn()); ?></span>
                 </div>
               </div>
             </div>
@@ -49,7 +60,7 @@
                   <span>Payments</span>
                 </div>
                 <div>
-                  <span class="h5 fw-bold nbr">DHS 556,000</span>
+                  <span class="h5 fw-bold nbr"> DHS<?php print_r($sum_payments->fetchColumn()); ?></span>
                 </div>
               </div>
             </div>

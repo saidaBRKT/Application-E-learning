@@ -24,7 +24,7 @@ echo <<<EOT
             </a>
         </li>
         <li>
-            <a href="#" class="nav-link px-auto align-middle text-dark d-flex">
+            <a href="courses.php" class="nav-link px-auto align-middle text-dark d-flex">
                 <i class="far fa-bookmark mt-1"></i> <span class="ms-1 d-none d-sm-inline">Cours</span> </a>
 
         </li>

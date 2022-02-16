@@ -1,29 +1,10 @@
 <?php
-include 'payments_functions.php';
-$payments=getpayments();
+ include 'operations.php';
+ include 'headHTML.php';
+ ?>
 
-?>
-
-
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Students</title>
-    <link rel="stylesheet" href="../css/style_total.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-    <!---->
-    <link rel="stylesheet"
-        href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+<title>Payments</title>
 </head>
-
 <body>
 
 <main class="container-fluid bg-light">
@@ -42,7 +23,8 @@ $payments=getpayments();
         </div>
         <hr class="mx-3">
         <div class="container-fluid px-3 mt-4">
-            <div class="table-responsive">
+        <div class="cont-stdnt">
+            <div class="table-responsive ">
                 <table class="table table-borderless payments">
                     <thead>
                         <tr class="border-none bg-light">
@@ -55,27 +37,59 @@ $payments=getpayments();
                             <th class="text-light">.</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <?php
-                        foreach($payments as $payments):?>
-                        <tr>
-                        <td><?php echo $payments['Name']?></td>
-                        <td><?php echo $payments['Payment schdule']?></td>
-                        <td><?php echo $payments['Bill Number']?></td>
-                        <td><?php echo $payments['Amount Paid']?></td>
-                        <td><?php echo $payments['Balance']?></td>
-                        <td><?php echo $payments['Date']?></td>
-                        <td class="action"> <span> <i class="far fa-eye "></i></span> </td>
-                        
-                        </tr>
-                        <?php endforeach;;   ?>
-                    </tbody>
+                     
 
+                    <tbody>
+                          <?php
+                           while($row=$result->fetch_assoc()): 
+                            ?>
+                           <tr>
+                            <td class="pt-4"><?php echo $row['Na_me']?></td>
+                            <td class="pt-4"><?php echo $row['Payment_Schedule']?></td>
+                            <td class="pt-4"><?php echo $row['Bil_Number']?></td>
+                            <td class="pt-4"><?php echo $row['Amount_Paid']?></td>
+                            <td class="pt-4"><?php echo $row['Balance']?></td>
+                            <td class="pt-4"><?php echo $row['da_te']?></td>
+                            <td class="action pt-4"> <a href="#?view=<?php echo $row['id'];?>"><span> <i class="far fa-eye " data-bs-toggle="modal" data-bs-target="#myModal"></a></i></span> </td>                        
+                            </tr>
+                          <?php   endwhile;   ?>
+                                <!-- Modal (debut)-->
+                            <div class="modal" id="myModal">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+
+                                <div class="modal-header">
+                                  <h4 class="modal-title">Payment Details</h4>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+
+                                <div class="modal-body">
+                                  Name : <label  class="form-label text-info" name="Na_me" ><?php echo $name ?></label><br>
+                                  Payment schdule : <label  class="form-label text-info" name="Payment_schdule" ><?php echo $payment ?></label><br>
+                                  Bill Number : <label  class="form-label text-info" name="Bil_Number" ><?php echo $Number?></label><br>
+                                  Amount Paid : <label  class="form-label text-info" name="Amount_Paid" ><?php echo $amount ?></label><br>
+                                  Balance Amount : <label  class="form-label text-info" name="Balance" ><?php echo $balance ?></label><br>
+                                  Date : <label  class="form-label text-info" name="da_te" ><?php echo $date ?></label><br>
+                                </div>
+
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                </div>
+
+                              </div>
+                            </div>
+                            </div>
+                                <!-- Modal (fin)-->
+                        </tbody>
                 </table>
-            </div>
+                </div>
+                </div>
         </div>
     </div>
 </div>
+
+
+
 </main>
 
 </body>
