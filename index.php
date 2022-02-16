@@ -31,8 +31,7 @@
                     <div class="mb-4 mb-sm-2">
                       <label for="Password" class="form-label text-secondary" >Password</label>
                       <input type="password" class="form-control" id="Password" placeholder="Enter your password">
-                    </div>
-                    
+                    </div>         
                     <span class="btn btn-info text-white w-100"><a href="php/home.php" class="text-decoration-none text-white">SIGN IN</a></span>
                     <p class="text-center mt-2">Forgot your password?<a href="#" class="text-info">Reset Password</a></p>
                   </form>

@@ -1,0 +1,37 @@
+
+[
+    {
+        "Name" : "Karthi1",
+        "Payment schdule" : "First",
+        "Bill Number" : "00012223",
+        "Amount Paid" : "DHS 100.000",
+        "Balance" : "DHS 100.000",
+        "Date" : "05-Jan-2022"
+    },
+    {
+        "Name" : "Karthi2",
+        "Payment schdule" : "First",
+        "Bill Number" : "00012223",
+        "Amount Paid" : "DHS 100.000",
+        "Balance" : "DHS 100.000",
+        "Date" : "05-Jan-2022"
+    },
+    {
+        "Name" : "Karthi3",
+        "Payment schdule" : "First",
+        "Bill Number" : "00012223",
+        "Amount Paid" : "DHS 100.000",
+        "Balance" : "DHS 100.000",
+        "Date" : "05-Jan-2022"
+    },
+    {
+        "Name" : "Karthi4",
+        "Payment schdule" : "First",
+        "Bill Number" : "00012223",
+        "Amount Paid" : "DHS 100.000",
+        "Balance" : "DHS 100.000",
+        "Date" : "05-Jan-2022"
+    }
+    
+   
+]

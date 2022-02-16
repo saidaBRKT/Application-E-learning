@@ -16,8 +16,6 @@ echo <<<EOT
             <span class="text-info d-none d-sm-flex">Admin</span>
         </div>
     </div>
-
-
     <ul class="nav nav-pills flex-column mb-sm-auto mb-0 justify-content-center align-items-center"
         id="menu">
         <li class="nav-item">
