@@ -1,5 +1,4 @@
-<?php
-echo <<<EOT
+
 <div class="sidebar col-2 col-sm-3 col-xl-2 px-sm-2 px-0 ">
 <div class="d-flex flex-column align-items-center  px-3 pt-2 text-white min-vh-100">
 
@@ -12,7 +11,18 @@ echo <<<EOT
     <div class="profile w-100 d-none d-sm-flex  flex-column justify-content-center align-items-center">
         <img src="../images/people-peoples-homeless-male.jpg" class="rounded-circle " alt="profile">
         <div class="admin d-flex flex-column justify-content-center align-items-center mb-3">
-            <span class="text-dark d-none d-sm-flex fw-bold">Admin name</span>
+            
+            <?php  
+                   session_start();  
+                    if(isset($_SESSION["username"]))  
+                    {  
+                        echo '<span class="text-dark d-none d-sm-flex fw-bold">'.$_SESSION["username"].'</span>';  
+                    }  
+                    else  
+                    {  
+                        header("location:../index.php");  
+                    }  
+            ?>  
             <span class="text-info d-none d-sm-flex">Admin</span>
         </div>
     </div>
@@ -58,7 +68,7 @@ echo <<<EOT
     </ul>
     <hr>
     <div>
-        <a href="../index.php"
+        <a href="logout.php"
             class="logout  d-flex align-items-center text-decoration-none text-dark w-100">
 
             <span class="d-none d-sm-inline mx-1 ">logout</span><i class="fal fa-sign-out-alt mt-1"></i>
@@ -67,6 +77,3 @@ echo <<<EOT
     </div>
 </div>
 </div>
-
-EOT;
-?>
