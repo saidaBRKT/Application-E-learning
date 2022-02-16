@@ -1,0 +1,48 @@
+:root {
+  --yellow_color: #faffc1;
+  --blue_color: #00c1fe;
+  --bg: #fff;
+}
+*{
+  font-family: 'Montserrat', sans-serif;
+ }
+ main{
+    background-color:var(--bg) ;
+    height: 110vh; 
+  }
+  form{  
+    flex-direction: column;
+    border-radius: 20px;
+  }
+  
+  .cont
+  {
+    display: flex;
+    justify-content: stretch;
+    align-items: center;
+    height: 100%;
+  }
+  .navbar-brand {
+    font-size: 20px;
+    font-weight: 700;
+  }
+  h6{
+    font-size: 15px;
+    font-weight: 600;
+  }
+  p{
+    font-size: 15px;
+    font-weight: 400;
+  }
+  label{
+    font-size: 12px;
+    font-weight: 500;
+  }
+  .form-control{
+    font-size: 10px;
+  }
+  @media screen and (min-width: 460px) {
+  main{
+    background: linear-gradient(69.66deg, var(--blue_color), var(--yellow_color) 96.69%);
+  }
+}
