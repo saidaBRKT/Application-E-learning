@@ -28,7 +28,7 @@ include 'headHTML.php';
                      <h6 class="text-center fw-bold">Update students</h6>
                      <div class="mb-2 mt-5">
                       <label  class="form-label text-secondary">Name :</label>
-                      <input type="text" class="form-control" name="name" placeholder="Name" value="<?php echo $name ?>">
+                      <input type="text" class="form-control" name="Name" placeholder="Name" value="<?php echo $name ?>">
                     </div>
                      <div class="mb-2">
                       <label class="form-label text-secondary">Email :</label>
@@ -46,7 +46,7 @@ include 'headHTML.php';
                       <label  class="form-label text-secondary" >Date</label>
                       <input type="date" class="form-control" name="date" placeholder="Enter your password" value="<?php echo $date?>">
                     </div>         
-                    <button class="btn btn-info text-white w-100" name="update">modifier</button>
+                    <button class="btn btn-info text-white w-100" name="edit">modifier</button>
               
                   </form>
                   </div>

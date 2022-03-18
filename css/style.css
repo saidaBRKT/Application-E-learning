@@ -41,6 +41,14 @@
   .form-control{
     font-size: 10px;
   }
+  .form-control small{
+    position: absolute;
+    margin: 3px;
+    visibility: hidden;
+  }
+  button{
+    cursor: pointer;
+  }
   @media screen and (min-width: 460px) {
   main{
     background: linear-gradient(69.66deg, var(--blue_color), var(--yellow_color) 96.69%);

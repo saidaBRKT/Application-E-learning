@@ -1,5 +1,5 @@
 <?php
     function isLoged(){
-        return (isset($_SESSION['auth']["username"]))  && (isset($_SESSION['auth']["password"]));
+        return (isset($_SESSION["username"]))  && (isset($_SESSION["password"]));
     }
 ?>

@@ -12,17 +12,12 @@
     $message = "";  
     try  
     {  
-      $connect = new PDO("mysql:host=$host; dbname=$database", $username, $password);  
-      $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);  
-      if($_SERVER['REQUEST_METHOD'] === 'POST')  
+      $connect = new PDO("mysql:host=$host; dbname=$database", $username, $password); 
+      if(isset($_POST['login']))  
       {  
-           if(empty($_POST["username"]) || empty($_POST["password"]))  
+           if(!empty($_POST["username"]) && !empty($_POST["password"]))  
            {  
-                $message = '<label>All fields are required</label>';  
-           }  
-           else  
-           {  
-                $query = "SELECT * FROM comptes WHERE username = :username AND password = :password";  
+                $query = "SELECT username,password FROM comptes WHERE username = :username AND password = :password";  
                 $statement = $connect->prepare($query);  
                 $statement->execute(  
                      array(  
@@ -41,11 +36,9 @@
                          setcookie('password');
                     }
 
-                     $_SESSION["auth"] = array(
-                         "username" => $_POST['username'],
-                         "password" => $_POST['password']
-                     );
-                     $_SESSION["username"] = $_POST["username"];  
+                     $_SESSION["username"] = $_POST["username"]; 
+                     $_SESSION["password"] = $_POST["password"];  
+ 
                      header("location:php/home.php");  
                 }  
                 else  
@@ -82,7 +75,7 @@
     <main class="container-fluid mt-0 mt-auto ">
         <div class=" cont row d-flex justify-content-center ">
             <div class="col-12 col-sm-6 col-md-4 ">
-                <form class="bg-white p-3 h-100 h-sm-70 " action="index.php"method="post" >
+                <form class="bg-white p-3 h-100 h-sm-70 " action="index.php"method="post" name = "myForm" onsubmit = "return(validate());">
                     <div class="mb-5 mx-5" >
                     <a class="navbar-brand text-dark border-start border-3 border-info px-2 mx-auto fs-4" href="#">E-Classe</a>
                      </div>
@@ -95,19 +88,22 @@
                 }  
                 ?> 
                      <div class="mb-2">
-                      <label for="user" class="form-label text-secondary">Username</label>
-                      <input type="text" class="form-control" name="username" value ="<?php echo $_COOKIE['username'] ?? "" ;?>" placeholder="Enter your username">
+                      <label for="user" class="form-label text-secondary">Email</label>
+                      <input type="email" class="form-control" id="username" name="username" value ="<?php echo $_COOKIE['username'] ?? "" ;?>" placeholder="Enter your Email">
+                      <label id="confirmEmail" style="display:none;">email not valid</label>
+                      <label id="confirmEmail2" style="display:none;">email cannot be empty</label>
                     </div>
                     <div class="mb-4 mb-sm-2">
                       <label for="Password" class="form-label text-secondary"  >Password</label>
                       <input type="password" class="form-control" id="Password"name="password" value ="<?php echo $_COOKIE['password'] ?? "" ;?>"   placeholder="Enter your password">
+                      <label id="confirmpsw" style="display:none;">Please provide your Password!</label>
                     </div>  
                     <div class="form-check form-switch mb-4 mb-sm-2">
                          <input  name="check" class="form-check-input" type="checkbox" id="ckeck">
                          <label class="form-check-label" for="ckeck">Remember me</label>
                     </div>       
-                    <button type="submit" class="btn btn-info text-white w-100" name="login">SIGN IN</button>
-                    
+                    <input type="submit" class="btn btn-info text-white w-100" name="login"value="SIGN IN">
+     
                     <p class="text-center mt-2">Forgot your password?<a href="#" class="text-info">Reset Password</a></p>
                      <a href="php/sign-up.php" class="text-info">sign up</a>
                    
@@ -120,6 +116,7 @@
    
     ?>
     <script src="js/bootstrap.bundle.min.js" ></script>
+    <script src="js/formValidation.js"></script>
 </body>
 </html>
 

@@ -32,25 +32,28 @@ if(isset($_POST['add'])){
     }
 //----------------------      Update Student    -----------------------------
     
-if(isset($_GET['edit'])){
-    $id=$_GET['edit'];
-    $rslt=$conn->query("SELECT count(*) FROM students where id=$id ") or die(mysqli->error());
-    if($rslt)
-    {
-        $req=$conn->query("SELECT Name,number,phone,email,date FROM students where id=$id ") or die(mysqli->error());
-        $row=$req->fetch_array();
-        $name=$row['Name'];
-        $number=$row['number'];
-        $phone=$row['phone'];
-        $email=$row['email'];
-        $date=$row['date'];
-    }
-}
+        if(isset($_GET['edit'])){
+           
+            $id=$_GET['edit'];
+            $rslt=$conn->query("SELECT count(*) FROM students where id=$id ") or die(mysqli->error());
+            if($rslt)
+            {
+                $req=$conn->query("SELECT Name,number,phone,email,date FROM students where id=$id ") or die(mysqli->error());
+                $row=$req->fetch_array();
+                $name=$row['Name'];
+                $number=$row['number'];
+                $phone=$row['phone'];
+                $email=$row['email'];
+                $date=$row['date'];
+            }
+        
+        }
 
-if(count($_POST)>0) {
-  mysqli_query($conn,"UPDATE students set  name='" . $_POST['name'] . "', email='" . $_POST['email'] . "' ,phone='" . $_POST['phone'] . "',number='".$_POST['number']. "' ,date='" . $_POST['date'] . "' WHERE id='" . $id . "'");
+if(isset($_POST['update']) && count($_POST)>0) {
+  mysqli_query($conn,"UPDATE students set  Name='" . $_POST['name'] . "', email='" . $_POST['email'] . "' ,phone='" . $_POST['phone'] . "',number='".$_POST['number']. "' ,date='" . $_POST['date'] . "' WHERE id='" . $id . "'");
   header('Location: students.php');
   }
+
 // ---------------------   Read-payments  ---------------------------
 
  $result=$conn->query("SELECT * FROM payments") or die(mysqli->error);

@@ -1,25 +1,26 @@
 <?php
+   try
+   {  
+     $con = new PDO( 'mysql:host=localhost;dbname=e_classe_db;charset=utf8','root',''); 
+     if(isset($_POST['save'])) {
 
-try {
-  $con = new PDO( 'mysql:host=localhost;dbname=e_classe_db;charset=utf8','root','');  
-  }
-catch(Exception $e) {
-    echo 'ERROR ' .$e->getMessage();
-  }
-  if(isset($_POST['save']))
-  { 
+       $fname=$_POST['fname'];
+       $lname=$_POST['lname'];
        $username=$_POST['username'];
        $password=$_POST['password'];
-       try {
-             $req =$con->prepare('INSERT INTO comptes(username,password) VALUES (?,?);');   
-             $req -> execute(array($username,$password));
-            
-       } catch (Exeption $e) {
+       $Cpassword=$_POST['Cpassword'];
+       
+        if(!empty($_POST["fname"]) && !empty($_POST["lname"]) &&  !empty($_POST["username"]) && !empty($_POST["password"]) && !empty($_POST["Cpassword"]))  
+        { 
+             $req =$con->prepare('INSERT INTO comptes(fname,lname,username,password) VALUES (?,?,?,?);');   
+             $req -> execute(array($fname,$lname,$username,$password));
+             header("location: ../index.php"); 
+        } 
+      }
+      }
+       catch (Exeption $e) {
           echo 'ERROR ' .$e->getMessage();
        }
-  
-       header("Location:../index.php");
-  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,33 +42,46 @@ catch(Exception $e) {
     <main class="container-fluid mt-0 mt-auto ">
         <div class=" cont row d-flex justify-content-center ">
             <div class="col-12 col-sm-6 col-md-4 ">
-                <form class="bg-white p-3 h-100 h-sm-70" method="post">
+                <form class="bg-white p-3 h-100 h-sm-70" method="post" id="myF"name = "myF" >
                     <div class="mb-5 mx-5" >
                     <a class="navbar-brand text-dark border-start border-3 border-info px-2 mx-auto fs-4" href="#">E-Classe</a>
                      </div>
                      <h6 class="text-center fw-bold">SIGN UP</h6>
                      <div class="mb-2">
-                      <label for="uname" class="form-label text-secondary">Username :</label>
-                      <input type="text" class="form-control" id="uname" name="username" placeholder="Enter your first name">
+                      <label for="fname" class="form-label text-secondary">First Name :</label>
+                      <input type="text" class="form-control" id="fname" name="fname" placeholder="Enter your first name">
+                      <small></small>
+                    </div>
+                    <div class="mb-2">
+                      <label for="lname" class="form-label text-secondary">Last Name :</label>
+                      <input type="text" class="form-control" id="lname" name="lname" placeholder="Enter your last name">
+                      <small></small>
+                    </div>
+                     <div class="mb-2">
+                      <label for="uname" class="form-label text-secondary">Email :</label>
+                      <input type="email" class="form-control" id="uname" name="username" placeholder="Enter your email">
+                      <small></small>
                     </div>
                     <div class="mb-4 mb-sm-2">
                       <label for="Password" class="form-label text-secondary" >Password :</label>
                       <input type="password" class="form-control" name="password" id="Password" placeholder="Enter your password">
+                      <small></small>
                     </div>
-
-                    <!--
+                    
                     <div class="mb-2">
                       <label for="confirmpass" class="form-label text-secondary">Confirm password :</label>
-                      <input type="password" class="form-control"name="Cpassword" id="confirmpass" placeholder="Enter your last name">
+                      <input type="password" class="form-control" name="Cpassword" id="confirmpass" placeholder="Enter your last name">
+                      <small></small>
                     </div>
-                     -->
-                              
-                    <button class="btn btn-info text-white w-100" name="save">SIGN UP</button>
+                           
+                    <input class=" btn btn-info text-white w-100" name="save" type="submit" value="SIGN UP">
                   </form>
             </div>
         </div>
     </main>
     <script src="js/bootstrap.bundle.min.js" ></script>
+    <script src="../js/formValidation.js"></script>
+
 </body>
 </html>
 

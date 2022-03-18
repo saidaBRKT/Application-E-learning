@@ -10,6 +10,23 @@ if(!isLoged()){
  ?>
 
 <title>Payments</title>
+<style>
+#dark{
+  width: 500px;
+}
+#myModal{
+  background-color: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: 1100px;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+</style>
 </head>
 <body>
 
@@ -53,20 +70,19 @@ if(!isLoged()){
                             <td class="pt-4"><?php echo $row['Na_me']?></td>
                             <td class="pt-4"><?php echo $row['Payment_Schedule']?></td>
                             <td class="pt-4"><?php echo $row['Bil_Number']?></td>
-                            <td class="pt-4"><?php echo $row['Amount_Paid']?></td>
-                            <td class="pt-4"><?php echo $row['Balance']?></td>
+                            <td class="pt-4">DHS <?php echo $row['Amount_Paid']?></td>
+                            <td class="pt-4">DHS <?php echo $row['Balance']?></td>
                             <td class="pt-4"><?php echo $row['da_te']?></td>
-                            <td class="action pt-4"> <a href="#?view=<?php echo $row['id'];?>"><span> <i class="far fa-eye " data-bs-toggle="modal" data-bs-target="#myModal"></a></i></span> </td>                        
+                            <td class="action pt-4"> <a href="?view=<?php echo $row['id'];?>"><span> <i class="far fa-eye " data-bs-toggle="modal" data-bs-target="#myModal"></a></i></span> </td>                        
                             </tr>
                           <?php   endwhile;   ?>
                                 <!-- Modal (debut)-->
                             <div class="modal" id="myModal">
-                            <div class="modal-dialog">
+                            <div class="modal-dialog" id="dark">
                               <div class="modal-content">
 
                                 <div class="modal-header">
                                   <h4 class="modal-title">Payment Details</h4>
-                                  <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                 </div>
 
                                 <div class="modal-body">
@@ -79,8 +95,8 @@ if(!isLoged()){
                                 </div>
 
                                 <div class="modal-footer">
-                                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                                </div>
+                <button type="button" class="btn btn-danger hideModel" >Close</button>
+            </div>
 
                               </div>
                             </div>
@@ -97,7 +113,16 @@ if(!isLoged()){
 
 
 </main>
-
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    if(window.location.href.split("?")[1]) {
+      document.querySelector("#myModal").style.display = "flex"
+    }
+  })
+  document.querySelector(".hideModel").addEventListener("click", function() {
+    document.querySelector("#myModal").style.display = "none"
+  })
+</script>
 </body>
 
 </html>
